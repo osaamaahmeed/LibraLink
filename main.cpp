@@ -234,13 +234,6 @@ void removeBook (Book *b) {
   }
 }
 
-void clear () {
-  while(head != NULL){
-    removeFromHead();
-  }
-  head = NULL;
-}
-
 // Search Functions
 void searchByPublishYear (int year) {
   Book *temp = head;
@@ -278,7 +271,7 @@ void searchByTitle (string title) {
 // Sort Functions
 void sortByPublishYear () {
   Book *b = head;
-  while (b -> next != NULL) {
+  while (b != NULL) {
     Book *minB = b->next;
     while (minB != NULL) {
       if (minB->publishYear < b->publishYear) {
@@ -506,17 +499,26 @@ int countBook () {
   return size;
 }
 
-~Library () {
-  // Book *temp = head;
-  // while (temp != NULL) {
-  //   
-  //   delete temp;
-  // }
+void clear () {
+  cout << "\n";
+  while(head != NULL){
+    removeFromHead();
+  }
+  head = NULL;
+}
 
-    while(head != NULL){
-      removeFromHead();
-    }
-    head = NULL;
+~Library () {
+
+  Book *temp = head;
+  while (temp != NULL) {
+    delete temp;
+  }
+  head = NULL;
+
+    // while(head != NULL){
+    //   removeFromHead();
+    // }
+    // head = NULL;
 
     // head = head->next;
     // while (head != NULL) {
@@ -528,29 +530,29 @@ int countBook () {
 
 };
 
-// 26/7=
-
 int main() {
-  Book *b1 = new Book("Atomic", "Osama", 123);
-  Book *b2 = new Book("Habits", "Ahmed", 321);
-  Book *b3 = new Book("Power", "Shahd", 456);
-  Book *b4 = new Book("Amareta", "Sama", 114);
-  Book *b5 = new Book("Amareta", "Ritsu", 114);
-  Book *b6 = new Book("Amareta", "Sherry", 114);
-  Book *b7 = new Book("Amareta", "Mariam", 114);
-  // Book *b5 = new Book("AAAA", "EE", 114);
+  Book *b1 = new Book("Dream", "Smith", 2020);
+  Book *b2 = new Book("Dawn", "Smith", 2021);
+  Book *b3 = new Book("Dark", "Jones", 2020);
+  Book *b4 = new Book("Dreamland", "Smith", 2022);
+  Book *b5 = new Book("Dreamer", "Taylor", 2023);
+  Book *b6 = new Book("Bright", "Taylor", 2020);
+  Book *b7 = new Book("Dawnlight", "Jones", 2021);
+  Book *b8 = new Book("Dragon", "Brown", 2022);
+  Book *b9 = new Book("Daring", "Smith", 2023);
+  Book *b10 = new Book("Brighten", "Brown", 2020);
   Library lb;
-  lb.addBookToTail(b1);
-  lb.addBookToTail(b2);
-  lb.addBookToTail(b3);
-  lb.addBookToTail(b4);
-  lb.addBookToTail(b5);
+  lb.addBookToHead(b1);
+  lb.addBookToHead(b2);
+  lb.addBookToHead(b3);
+  lb.addBookToHead(b4);
+  lb.addBookToHead(b5);
   lb.addBookToTail(b6);
   lb.addBookToTail(b7);
-  lb.sortByAuthor();
+  lb.addBookToTail(b8);
+  lb.addBookToTail(b9);
+  lb.addBookToPos(b10, 5);
   lb.displayBooks();
-  cout << "=======================\n";
-  lb.reverseSortByAuthor();
-  lb.displayBooks();
-  
+  cout << "========================================\n";
+
 }
